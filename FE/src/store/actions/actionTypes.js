@@ -1,0 +1,8 @@
+//common Types
+export const LOADING_REQUEST = "LOADING_REQUEST";
+export const REQUEST_ERROR = "REQUEST_ERROR"
+
+//form Type 
+export const CREATE_FORMS = "CREATE_FORMS";
+export const FORM_REQUEST_SUCCESS = "FORM_REQUEST_SUCCESS";
+export const FETCH_SINGLE_FORM = "FETCH_SINGLE_FORM";

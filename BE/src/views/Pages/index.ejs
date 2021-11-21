@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+    <div>
+    <b>Q.</b> <span class="font-weight-bolder"><%= question.question %></span>
+  </div>
+    <form method="post" action="http://localhost:5000/question/<%= question._id %>/post-survey">
+    <% if(question.questionType === "boolean"){ %>
+      <div class="form-check form-check-inline" style="margin-top: 10px">
+        <input class="form-check-input" type="radio" name="answer"  id="yes" value="yes" checked>
+        <label class="form-check-label" for="yes">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline" style="margin-top: 10px">
+        <input class="form-check-input" type="radio" name="answer"  id="no" value="no">
+        <label class="form-check-label" for="no">
+          No
+        </label>
+      </div>
+    <% } else if(question.questionType === "multiple-choice-multi-select"){ %>  
+      <div class="form-group" style="margin-top: 10px">
+        <div
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Options</label>
+        </div>
+        <div>
+        <select name="answer" style="width: 250px;" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+          <% for(var i=0; i < question.options.length; i++) { %>
+            <option selected value="<%= question.options[i].value%>"><%=question.options[i].title%></option>
+            <% } %>
+        </select>
+      </div>
+      </div>
+   <% }else{ %>  
+    <div class="form-group" style="margin-top: 10px">
+      <label for="exampleInputPassword1">Answer: </label>
+      <input name="answer" style="width: 300px;" placeholder="Please Enter your Answer here..." type="text" class="form-control" id="exampleInputPassword1">
+    </div>
+     <% } %>
+      <div style="margin-top: 10px">
+        <button type="submit" class="btn btn-primary">Answer</button>
+      </div>  
+      
+    </form>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
